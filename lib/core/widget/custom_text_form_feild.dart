@@ -1,3 +1,4 @@
+import 'package:chat_app/core/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -31,7 +32,7 @@ class CustomTextFormField extends StatelessWidget {
     this.maxLines = 1,
     this.enabled = true,
     this.fillColor,
-    this.focusedBorderColor = Colors.blue,
+    this.focusedBorderColor = AppColors.primaryColor,
     this.borderRadius,
     this.focusNode,
   });
@@ -54,7 +55,7 @@ class CustomTextFormField extends StatelessWidget {
         suffixIcon: suffixIcon,
         filled: true,
         // ignore: deprecated_member_use
-        fillColor: fillColor ?? Colors.blue.withOpacity(0.1),
+        fillColor: fillColor ?? AppColors.primaryColor.withOpacity(0.1),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 8,

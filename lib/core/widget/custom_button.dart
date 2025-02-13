@@ -1,3 +1,4 @@
+import 'package:chat_app/core/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -33,7 +34,7 @@ class CustomButton extends StatelessWidget {
         onTap: isLoading ? null : onPressed,
         child: Container(
           decoration: BoxDecoration(
-            color: color,
+            color: color ?? AppColors.primaryColor,
             borderRadius: BorderRadius.circular(borderRadius ?? 8),
           ),
           padding:
