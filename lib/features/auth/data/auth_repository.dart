@@ -1,4 +1,4 @@
-import 'package:chat_app/features/auth/hive/hive_service.dart';
+import 'package:chat_app/features/auth/data/hive_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepository {

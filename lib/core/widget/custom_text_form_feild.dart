@@ -1,5 +1,6 @@
 import 'package:chat_app/core/constant/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String? labelText;
@@ -56,25 +57,25 @@ class CustomTextFormField extends StatelessWidget {
         filled: true,
         // ignore: deprecated_member_use
         fillColor: fillColor ?? AppColors.primaryColor.withOpacity(0.1),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 16.w,
+          vertical: 8.h,
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 24),
+          borderRadius: BorderRadius.circular(borderRadius ?? 24.r),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 24),
+          borderRadius: BorderRadius.circular(borderRadius ?? 24.r),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 24),
+          borderRadius: BorderRadius.circular(borderRadius ?? 24.r),
           borderSide: BorderSide(color: focusedBorderColor),
         ),
         hintStyle: TextStyle(
           color: Colors.grey[600],
-          fontSize: 14,
+          fontSize: 14.sp,
         ),
       ),
     );

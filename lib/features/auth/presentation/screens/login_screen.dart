@@ -1,55 +1,48 @@
-import 'package:chat_app/features/auth/screen/auth_screen.dart';
-import 'package:chat_app/features/auth/widget/email_field.dart';
-import 'package:chat_app/features/auth/widget/password_field.dart';
-import 'package:chat_app/features/auth/widget/username_field.dart';
-import 'package:flutter/material.dart';
+import 'package:chat_app/core/router/routes.dart';
+import 'package:chat_app/features/auth/presentation/widgets/auth_layout.dart';
+import 'package:chat_app/features/auth/presentation/widgets/email_field.dart';
+import 'package:chat_app/features/auth/presentation/widgets/password_field.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
-  final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _emailFocusNode = FocusNode();
-  final _usernameFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
   bool _isPasswordVisible = false;
 
   @override
   void dispose() {
     _emailController.dispose();
-    _usernameController.dispose();
     _passwordController.dispose();
     _emailFocusNode.dispose();
-    _usernameFocusNode.dispose();
     _passwordFocusNode.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AuthScreen(
-      title: 'Sign Up',
-      introTitle: 'Create an account',
-      introSubtitle: 'Fill in the form below to create an account',
+    return AuthLayout(
+      title: 'Login',
+      introTitle: 'Welcome back!',
+      introSubtitle: 'Sign in to your account',
       formKey: _formKey,
       formFields: [
-        UsernameField(
-          controller: _usernameController,
-          focusNode: _usernameFocusNode,
-        ),
-        const SizedBox(height: 16),
         EmailField(
           controller: _emailController,
           focusNode: _emailFocusNode,
         ),
-        const SizedBox(height: 16),
+        SizedBox(height: 16.h),
         PasswordField(
           controller: _passwordController,
           focusNode: _passwordFocusNode,
@@ -58,20 +51,24 @@ class _SignupScreenState extends State<SignupScreen> {
             () => _isPasswordVisible = !_isPasswordVisible,
           ),
         ),
+        SizedBox(height: 10.h),
       ],
-      submitButtonText: 'Sign up',
+      submitButtonText: 'Login',
       onSubmit: () {
         if (_formKey.currentState!.validate()) {
-          /*  context.read<AuthCubit>().signUp(
+          /*    context.read<AuthCubit>().signIn(
                     email: _emailController.text,
                     password: _passwordController.text,
-                    username: _usernameController.text,
                   );*/
         }
       },
-      showForgotPassword: false,
       isLoading: false,
       errorMessage: '',
+      showForgotPassword: true,
+      onForgotPassword: () {
+        //  context.read<AuthCubit>().clearError();
+        Navigator.pushNamed(context, Routes.forgotPasswordScreen);
+      },
     );
   }
 }

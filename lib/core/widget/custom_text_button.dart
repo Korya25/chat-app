@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextButton extends StatelessWidget {
   final String text;
@@ -30,13 +31,13 @@ class CustomTextButton extends StatelessWidget {
         padding: padding,
         decoration: BoxDecoration(
           color: backgroundColor,
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(8.0.r),
         ),
         child: Text(
           text,
           style: textStyle ??
               TextStyle(
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
                 color: textColor ?? Colors.black,
               ),

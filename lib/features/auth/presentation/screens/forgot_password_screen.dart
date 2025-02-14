@@ -1,5 +1,5 @@
-import 'package:chat_app/features/auth/screen/auth_screen.dart';
-import 'package:chat_app/features/auth/widget/email_field.dart';
+import 'package:chat_app/features/auth/presentation/widgets/auth_layout.dart';
+import 'package:chat_app/features/auth/presentation/widgets/email_field.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AuthScreen(
+    return AuthLayout(
       title: 'Forgot Password',
       introTitle: 'Enter your email',
       introSubtitle:

@@ -1,5 +1,6 @@
 import 'package:chat_app/core/constant/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -28,22 +29,22 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height ?? 50,
-      width: width ?? double.infinity,
+      height: height ?? 50.h,
+      width: width ?? double.infinity.w,
       child: GestureDetector(
         onTap: isLoading ? null : onPressed,
         child: Container(
           decoration: BoxDecoration(
             color: color ?? AppColors.primaryColor,
-            borderRadius: BorderRadius.circular(borderRadius ?? 8),
+            borderRadius: BorderRadius.circular(borderRadius ?? 8.r),
           ),
           padding:
-              padding ?? EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding ?? EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
           child: Center(
             child: isLoading
-                ? const SizedBox(
-                    height: 25,
-                    width: 25,
+                ? SizedBox(
+                    height: 25.h,
+                    width: 25.w,
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
                       color: Colors.white,
@@ -53,7 +54,7 @@ class CustomButton extends StatelessWidget {
                     text,
                     style: textStyle ??
                         TextStyle(
-                            fontSize: 18,
+                            fontSize: 18.sp,
                             fontWeight: FontWeight.w600,
                             color: Colors.white),
                   ),

@@ -1,10 +1,11 @@
 import 'package:chat_app/core/constant/app_colors.dart';
 import 'package:chat_app/core/widget/custom_button.dart';
 import 'package:chat_app/core/widget/custom_text_button.dart';
-import 'package:chat_app/features/auth/widget/intro_message.dart';
+import 'package:chat_app/features/auth/presentation/widgets/intro_message.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AuthScreen extends StatelessWidget {
+class AuthLayout extends StatelessWidget {
   final String title;
   final String introTitle;
   final String introSubtitle;
@@ -17,7 +18,7 @@ class AuthScreen extends StatelessWidget {
   final bool showForgotPassword;
   final void Function()? onForgotPassword;
 
-  const AuthScreen({
+  const AuthLayout({
     super.key,
     required this.title,
     required this.introTitle,
@@ -39,7 +40,7 @@ class AuthScreen extends StatelessWidget {
         title: Text(
           title,
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 20.sp,
             fontWeight: FontWeight.w600,
             color: AppColors.black,
           ),
@@ -50,23 +51,23 @@ class AuthScreen extends StatelessWidget {
         child: Form(
           key: formKey,
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
                 IntroMessage(
                   title: introTitle,
                   subTitle: introSubtitle,
                 ),
-                const SizedBox(height: 30),
+                SizedBox(height: 30.h),
                 ...formFields,
                 if (showForgotPassword)
                   Center(
                     child: CustomTextButton(
                       text: 'Forgot password?',
                       textStyle: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.sp,
                         color: AppColors.primaryColor,
                         fontWeight: FontWeight.w600,
                       ),
@@ -74,13 +75,13 @@ class AuthScreen extends StatelessWidget {
                     ),
                   ),
                 if (errorMessage.isNotEmpty) ...[
-                  const SizedBox(height: 10),
+                  SizedBox(height: 10.h),
                   Text(
                     errorMessage,
                     style: const TextStyle(color: Colors.red),
                   ),
                 ],
-                const SizedBox(height: 20),
+                SizedBox(height: 20.h),
                 CustomButton(
                   onPressed: onSubmit,
                   text: submitButtonText,

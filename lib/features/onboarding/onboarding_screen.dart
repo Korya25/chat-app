@@ -21,24 +21,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
+          padding: EdgeInsets.symmetric(
+            horizontal: 20.w,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // svg image
-              SizedBox(height: 50),
+              SizedBox(height: 50.h),
               SizedBox(
-                height: 300,
-                width: 300,
+                height: 300.h,
+                width: 300.w,
                 child: SvgPicture.asset(
                   AppAssets.onboarding,
                 ),
               ),
 
               // title
-              SizedBox(height: 220),
+              SizedBox(height: 220.h),
               Text(
                 'As fast as lightning,\nas delicious as thunder!',
                 textAlign: TextAlign.center,
@@ -46,7 +46,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
 
               // Login Fotter Button
-              SizedBox(height: 50),
+              SizedBox(height: 50.h),
               CustomButton(
                 text: 'Login with your account',
                 onPressed: () {
@@ -55,10 +55,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
 
               // Sign up Fotter TextButton Button
-              SizedBox(height: 20),
+              SizedBox(height: 20.h),
 
               Row(
-                spacing: 3,
+                spacing: 3.w,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomTextButton(
