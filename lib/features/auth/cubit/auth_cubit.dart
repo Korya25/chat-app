@@ -8,6 +8,11 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit(this._authRepository) : super(const AuthInitial());
 
+  // clear the error message
+  void clearError() {
+    emit(const AuthInitial());
+  }
+
   // Check if user is already logged in
   void checkUserStatus() {
     User? user = _authRepository.getCurrentUser();
@@ -19,7 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   // Sign In
-  Future<void> signIn(String email, String password) async {
+  Future<void> signIn({required String email, required String password}) async {
     emit(const AuthLoading());
     try {
       User? user = await _authRepository.signIn(email, password);
@@ -36,10 +41,14 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   // Sign Up
-  Future<void> signUp(String email, String password) async {
+  Future<void> signUp(
+      {required String email,
+      required String password,
+      required String userName}) async {
     emit(const AuthLoading());
     try {
-      User? user = await _authRepository.signUp(email, password);
+      User? user = await _authRepository.signUp(
+          email: email, password: password, userName: userName);
       if (user != null) {
         emit(AuthSuccess(user));
       } else {
@@ -54,6 +63,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   // Sign Out
   Future<void> signOut() async {
+    emit(const AuthLoading());
+
     try {
       await _authRepository.signOut();
       emit(const AuthLoggedOut());
@@ -63,12 +74,18 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   // Reset Password
-  Future<void> resetPassword(String email) async {
+  Future<void> resetPassword({required String email}) async {
+    emit(const AuthLoading());
     try {
       await _authRepository.resetPassword(email);
       emit(const AuthPasswordResetSuccess());
     } catch (e) {
-      emit(AuthError("Failed to send password reset email"));
+      if (e.toString().contains("Email is not registered")) {
+        emit(AuthPasswordResetError(
+            "Email is not registered go to sign up page"));
+      } else {
+        emit(AuthPasswordResetError("Failed to send password reset email"));
+      }
     }
   }
 }

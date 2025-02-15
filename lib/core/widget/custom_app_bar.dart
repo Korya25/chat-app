@@ -1,3 +1,4 @@
+import 'package:chat_app/core/constant/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,7 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.title,
     this.leading,
     this.actions,
-    this.backgroundColor = Colors.blue,
+    this.backgroundColor = AppColors.primaryColor,
     this.centerTitle = true,
     this.iconTheme,
     this.titleWidget,

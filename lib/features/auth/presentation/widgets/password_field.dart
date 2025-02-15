@@ -7,6 +7,7 @@ class PasswordField extends StatelessWidget {
   final FocusNode focusNode;
   final bool isPasswordVisible;
   final VoidCallback onVisibilityPressed;
+  final void Function(String)? onFieldSubmitted;
 
   const PasswordField({
     super.key,
@@ -14,6 +15,7 @@ class PasswordField extends StatelessWidget {
     required this.focusNode,
     required this.isPasswordVisible,
     required this.onVisibilityPressed,
+    this.onFieldSubmitted,
   });
 
   @override
@@ -22,6 +24,7 @@ class PasswordField extends StatelessWidget {
       hintText: 'Password',
       controller: controller,
       focusNode: focusNode,
+      onFieldSubmitted: onFieldSubmitted,
       validator: Validators.validatePassword,
       prefixIcon: const Icon(Icons.lock_outline),
       keyboardType: TextInputType.visiblePassword,

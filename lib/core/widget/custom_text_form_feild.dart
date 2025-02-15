@@ -18,6 +18,7 @@ class CustomTextFormField extends StatelessWidget {
   final Color focusedBorderColor;
   final double? borderRadius;
   final FocusNode? focusNode;
+  final void Function(String)? onFieldSubmitted;
 
   const CustomTextFormField({
     super.key,
@@ -36,6 +37,7 @@ class CustomTextFormField extends StatelessWidget {
     this.focusedBorderColor = AppColors.primaryColor,
     this.borderRadius,
     this.focusNode,
+    this.onFieldSubmitted,
   });
 
   @override
@@ -43,6 +45,7 @@ class CustomTextFormField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       focusNode: focusNode,
+      onFieldSubmitted: onFieldSubmitted,
       keyboardType: keyboardType,
       obscureText: obscureText,
       validator: validator,

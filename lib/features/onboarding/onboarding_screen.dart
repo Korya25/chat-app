@@ -4,7 +4,9 @@ import 'package:chat_app/core/constant/app_text_styles.dart';
 import 'package:chat_app/core/router/routes.dart';
 import 'package:chat_app/core/widget/custom_button.dart';
 import 'package:chat_app/core/widget/custom_text_button.dart';
+import 'package:chat_app/features/auth/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -50,6 +52,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               CustomButton(
                 text: 'Login with your account',
                 onPressed: () {
+                  context.read<AuthCubit>().clearError();
                   Navigator.pushNamed(context, Routes.loginScreen);
                 },
               ),
@@ -74,6 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       color: AppColors.primaryColor,
                     ),
                     onPressed: () {
+                      context.read<AuthCubit>().clearError();
                       Navigator.pushNamed(context, Routes.registerScreen);
                     },
                   ),
