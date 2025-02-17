@@ -1,11 +1,14 @@
 class Routes {
   static const String authCheckScreen = '/';
-  static const String onboardingScreen = '/onboarding';
-  static const String loginScreen = '/login';
-  static const String registerScreen = '/register';
-  static const String forgotPasswordScreen = '/forgot-password';
-  static const String resetPasswordScreen = '/reset-password';
-  static const String profileScreen = '/profile';
-  static const String settingsScreen = '/settings';
-  static const String chatScreen = '/chat';
+  static const String onboardingScreen = '/onboardingScreen';
+  static const String loginScreen = '/loginScreen';
+  static const String registerScreen = '/registerScreen';
+  static const String forgotPasswordScreen = '/forgot-passwordScreen';
+  static const String settingsScreen = '/settingsScreen';
+  static const String chatScreen = '/chatStreamScreen';
+  static const String profileScreen = '/profileScreen';
+  static const String accountScreen = '/accountScreen';
+  static const String changeUsernameScreen = '/changeUsernameScreen';
+  static const String changeEmailScreen = '/changeEmailScreen';
+  static const String updatePasswordScreen = '/updatePasswordScreen';
 }

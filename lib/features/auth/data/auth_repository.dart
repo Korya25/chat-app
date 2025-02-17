@@ -46,7 +46,10 @@ class AuthRepository {
       );
 
       if (credential.user != null) {
-        await HiveService.saveUserData(credential.user!.uid, email);
+        await HiveService.saveUserData(
+          credential.user!.uid,
+          email,
+        );
 
         // Add user to Firestore
         await _addUserToFirestore(

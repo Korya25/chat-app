@@ -1,3 +1,4 @@
+import 'package:chat_app/core/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -11,31 +12,30 @@ class AccountSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionTitle('Account', context),
+        _buildSectionTitle('Account'),
         _buildListTile(
           text: 'Profile',
           icon: FontAwesomeIcons.user,
           onTap: () => _navigateToProfile(context),
-          context: context,
         ),
         _buildListTile(
-          text: 'Account Settings',
+          text: 'Account',
           icon: FontAwesomeIcons.lock,
           onTap: () => _navigateToAccountSettings(context),
-          context: context,
         ),
       ],
     );
   }
 
-  Widget _buildSectionTitle(String text, BuildContext context) {
+  Widget _buildSectionTitle(String text) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: Colors.grey[500],
-            ),
+        style: TextStyle(
+          fontSize: 16.sp,
+          color: Colors.grey,
+        ),
       ),
     );
   }
@@ -44,15 +44,15 @@ class AccountSection extends StatelessWidget {
     required String text,
     required IconData icon,
     required VoidCallback onTap,
-    required BuildContext context,
   }) {
     return ListTile(
       tileColor: AppColors.primaryColor,
       title: Text(
         text,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: Colors.white,
-            ),
+        style: TextStyle(
+          fontSize: 16.sp,
+          color: Colors.white,
+        ),
       ),
       leading: Icon(icon, color: Colors.white, size: 20),
       trailing: Icon(
@@ -65,10 +65,10 @@ class AccountSection extends StatelessWidget {
   }
 
   void _navigateToProfile(BuildContext context) {
-    // TODO: Implement navigation
+    Navigator.of(context).pushNamed(Routes.profileScreen);
   }
 
   void _navigateToAccountSettings(BuildContext context) {
-    // TODO: Implement navigation
+    Navigator.of(context).pushNamed(Routes.accountScreen);
   }
 }

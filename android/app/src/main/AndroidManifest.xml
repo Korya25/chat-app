@@ -1,4 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- إذن استخدام الكاميرا -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <!-- إذن الوصول إلى الصور (للأجهزة الحديثة) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+
+    <!-- إذن الوصول إلى الصور (للأجهزة القديمة - Android 9 وأقل) -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"/>
     <application
         android:label="chat_app"
         android:name="${applicationName}"

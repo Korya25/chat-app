@@ -1,4 +1,9 @@
 import 'package:chat_app/core/router/routes.dart';
+import 'package:chat_app/features/account/presentation/screens/account_screen.dart';
+import 'package:chat_app/features/account/presentation/screens/change_email_screen.dart';
+import 'package:chat_app/features/account/presentation/screens/change_username_screen.dart';
+import 'package:chat_app/features/account/presentation/screens/profile_screen.dart';
+import 'package:chat_app/features/account/presentation/screens/update_password_screen.dart';
 import 'package:chat_app/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:chat_app/features/auth/presentation/screens/login_screen.dart';
 import 'package:chat_app/features/auth/presentation/screens/register_screen.dart';
@@ -25,6 +30,16 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const Chat());
       case Routes.settingsScreen:
         return MaterialPageRoute(builder: (_) => const SettingsScreen());
+      case Routes.profileScreen:
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
+      case Routes.accountScreen:
+        return MaterialPageRoute(builder: (_) => const AccountScreen());
+      case Routes.changeUsernameScreen:
+        return MaterialPageRoute(builder: (_) => const ChangeUsernameScreen());
+      case Routes.changeEmailScreen:
+        return MaterialPageRoute(builder: (_) => const ChangeEmailScreen());
+      case Routes.updatePasswordScreen:
+        return MaterialPageRoute(builder: (_) => const UpdatePasswordScreen());
       default:
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
     }

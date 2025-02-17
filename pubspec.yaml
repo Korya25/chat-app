@@ -79,6 +79,7 @@ dependencies:
   # Allows launching URLs in an external browser, maps, or dialer
   url_launcher: ^6.3.1
   equatable: ^2.0.7
+  image_picker: ^1.1.2
 
 
 dev_dependencies:
@@ -107,6 +108,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/svgs/
+     - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

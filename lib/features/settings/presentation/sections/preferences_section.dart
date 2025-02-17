@@ -19,7 +19,7 @@ class PreferencesSection extends StatelessWidget {
           context: context,
         ),
         _buildListTile(
-          text: 'Privacy and Social',
+          text: 'Privacy & Social',
           icon: FontAwesomeIcons.shareNodes,
           onTap: () => _navigateToPrivacyAndSocial(context),
           context: context,
@@ -45,9 +45,10 @@ class PreferencesSection extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              color: Colors.grey[500],
-            ),
+        style: TextStyle(
+          fontSize: 16.sp,
+          color: Colors.grey,
+        ),
       ),
     );
   }
@@ -62,9 +63,10 @@ class PreferencesSection extends StatelessWidget {
       tileColor: AppColors.primaryColor,
       title: Text(
         text,
-        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: Colors.white,
-            ),
+        style: TextStyle(
+          fontSize: 16.sp,
+          color: Colors.white,
+        ),
       ),
       leading: Icon(icon, color: Colors.white, size: 20),
       trailing: Icon(
@@ -76,19 +78,11 @@ class PreferencesSection extends StatelessWidget {
     );
   }
 
-  void _navigateToChatsBubble(BuildContext context) {
-    // TODO: Implement navigation
-  }
+  void _navigateToChatsBubble(BuildContext context) {}
 
-  void _navigateToPrivacyAndSocial(BuildContext context) {
-    // TODO: Implement navigation
-  }
+  void _navigateToPrivacyAndSocial(BuildContext context) {}
 
-  void _navigateToLanguageSettings(BuildContext context) {
-    // TODO: Implement navigation
-  }
+  void _navigateToLanguageSettings(BuildContext context) {}
 
-  void _navigateToThemeSettings(BuildContext context) {
-    // TODO: Implement navigation
-  }
+  void _navigateToThemeSettings(BuildContext context) {}
 }

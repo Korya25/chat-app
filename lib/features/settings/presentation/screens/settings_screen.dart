@@ -2,7 +2,7 @@ import 'package:chat_app/features/settings/presentation/sections/account_section
 import 'package:chat_app/features/settings/presentation/sections/help_section.dart';
 import 'package:chat_app/features/settings/presentation/sections/logout_button.dart';
 import 'package:chat_app/features/settings/presentation/sections/preferences_section.dart';
-import 'package:chat_app/features/settings/presentation/widgets/follow_us_section.dart';
+import 'package:chat_app/features/settings/presentation/sections/follow_us_section.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/core/widget/custom_app_bar.dart';
 

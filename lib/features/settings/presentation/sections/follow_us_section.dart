@@ -10,12 +10,14 @@ class FollowUsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(height: 6.h),
         Center(
           child: Text(
-            'Follow Us',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Colors.grey[500],
-                ),
+            'Follow Us @chat_app',
+            style: TextStyle(
+              fontSize: 16.sp,
+              color: Colors.grey,
+            ),
           ),
         ),
         SizedBox(height: 8.h),
