@@ -1,5 +1,5 @@
 import 'package:chat_app/core/constant/app_colors.dart';
-import 'package:chat_app/core/router/routes.dart';
+import 'package:chat_app/core/router/app_routes.dart';
 import 'package:chat_app/core/widget/custom_app_bar.dart';
 import 'package:chat_app/features/account/presentation/widget/delate_acciunt_button.dart';
 import 'package:flutter/material.dart';
@@ -31,18 +31,18 @@ class _AccountScreenState extends State<AccountScreen> {
                   text: 'Change Username',
                   icon: FontAwesomeIcons.user,
                   onTap: () =>
-                      Navigator.pushNamed(context, Routes.changeUsernameScreen),
+                      Navigator.pushNamed(context, AppRoutes.changeUsername),
                 ),
                 _buildListTile(
                     text: 'Change Email',
                     icon: FontAwesomeIcons.envelope,
                     onTap: () =>
-                        Navigator.pushNamed(context, Routes.changeEmailScreen)),
+                        Navigator.pushNamed(context, AppRoutes.changeEmail)),
                 _buildListTile(
                     text: 'Update Password',
                     icon: FontAwesomeIcons.lock,
-                    onTap: () => Navigator.pushNamed(
-                        context, Routes.updatePasswordScreen)),
+                    onTap: () =>
+                        Navigator.pushNamed(context, AppRoutes.updatePassword)),
                 SizedBox(height: 40),
                 DeleteAccountButton(),
               ],

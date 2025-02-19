@@ -1,7 +1,7 @@
 import 'package:chat_app/core/constant/app_assets.dart';
 import 'package:chat_app/core/constant/app_colors.dart';
 import 'package:chat_app/core/constant/app_text_styles.dart';
-import 'package:chat_app/core/router/routes.dart';
+import 'package:chat_app/core/router/app_routes.dart';
 import 'package:chat_app/core/widget/custom_button.dart';
 import 'package:chat_app/core/widget/custom_text_button.dart';
 import 'package:chat_app/features/auth/cubit/auth_cubit.dart';
@@ -53,7 +53,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 text: 'Login with your account',
                 onPressed: () {
                   context.read<AuthCubit>().clearError();
-                  Navigator.pushNamed(context, Routes.loginScreen);
+                  Navigator.pushNamed(context, AppRoutes.login);
                 },
               ),
 
@@ -78,7 +78,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     onPressed: () {
                       context.read<AuthCubit>().clearError();
-                      Navigator.pushNamed(context, Routes.registerScreen);
+                      Navigator.pushNamed(context, AppRoutes.register);
                     },
                   ),
                 ],

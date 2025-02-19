@@ -1,4 +1,4 @@
-import 'package:chat_app/core/router/routes.dart';
+import 'package:chat_app/core/router/app_routes.dart';
 import 'package:chat_app/core/widget/custom_app_bar.dart';
 import 'package:chat_app/core/widget/custom_button.dart';
 import 'package:chat_app/features/auth/cubit/auth_cubit.dart';
@@ -18,7 +18,7 @@ class Chat extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, Routes.settingsScreen);
+              Navigator.pushNamed(context, AppRoutes.settings);
             },
             icon: const Icon(Icons.settings),
           )
@@ -30,7 +30,7 @@ class Chat extends StatelessWidget {
             if (state is AuthLoggedOut) {
               Navigator.pushNamedAndRemoveUntil(
                 context,
-                Routes.onboardingScreen,
+                AppRoutes.onboarding,
                 (route) => false,
               );
             }

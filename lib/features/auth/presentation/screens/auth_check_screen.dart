@@ -1,4 +1,4 @@
-import 'package:chat_app/core/router/routes.dart';
+import 'package:chat_app/core/router/app_routes.dart';
 import 'package:chat_app/features/auth/cubit/auth_cubit.dart';
 import 'package:chat_app/features/auth/cubit/auth_state.dart';
 import 'package:flutter/material.dart';
@@ -23,9 +23,9 @@ class _AuthCheckScreenState extends State<AuthCheckScreen> {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccess) {
-          Navigator.pushReplacementNamed(context, Routes.chatScreen);
+          Navigator.pushReplacementNamed(context, AppRoutes.chat);
         } else if (state is AuthLoggedOut) {
-          Navigator.pushReplacementNamed(context, Routes.onboardingScreen);
+          Navigator.pushReplacementNamed(context, AppRoutes.onboarding);
         }
       },
       child: const Scaffold(

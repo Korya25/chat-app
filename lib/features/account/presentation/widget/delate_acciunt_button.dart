@@ -1,5 +1,5 @@
 import 'package:chat_app/core/constant/app_colors.dart';
-import 'package:chat_app/core/router/routes.dart';
+import 'package:chat_app/core/router/app_routes.dart';
 import 'package:chat_app/core/utils/validators.dart';
 import 'package:chat_app/core/widget/custom_button.dart';
 import 'package:chat_app/core/widget/custom_text_button.dart';
@@ -151,7 +151,7 @@ class _DeleteAccountDialogState extends State<DeleteAccountDialog> {
         if (state is AccountSuccess) {
           context.read<AuthCubit>().signOut();
           Navigator.pop(context);
-          Navigator.pushReplacementNamed(context, Routes.authCheckScreen);
+          Navigator.pushReplacementNamed(context, AppRoutes.authCheck);
         } else if (state is AccountError) {
           setState(() => _errorMessage = state.error);
         }

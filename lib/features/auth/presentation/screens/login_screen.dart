@@ -1,4 +1,4 @@
-import 'package:chat_app/core/router/routes.dart';
+import 'package:chat_app/core/router/app_routes.dart';
 import 'package:chat_app/features/auth/cubit/auth_cubit.dart';
 import 'package:chat_app/features/auth/cubit/auth_state.dart';
 import 'package:chat_app/features/auth/presentation/widgets/auth_layout.dart';
@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (state is AuthSuccess) {
           Navigator.pushNamedAndRemoveUntil(
             context,
-            Routes.chatScreen,
+            AppRoutes.chat,
             (route) => false,
           );
           _emailController.clear();
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
           showForgotPassword: true,
           onForgotPassword: () {
             context.read<AuthCubit>().clearError();
-            Navigator.pushNamed(context, Routes.forgotPasswordScreen);
+            Navigator.pushNamed(context, AppRoutes.forgotPassword);
           },
         );
       },

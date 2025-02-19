@@ -1,4 +1,4 @@
-import 'package:chat_app/core/router/routes.dart';
+import 'package:chat_app/core/router/app_routes.dart';
 import 'package:chat_app/features/auth/cubit/auth_cubit.dart';
 import 'package:chat_app/features/auth/cubit/auth_state.dart';
 import 'package:chat_app/features/auth/presentation/widgets/auth_layout.dart';
@@ -44,7 +44,7 @@ class _SignupScreenState extends State<SignupScreen> {
         if (state is AuthSuccess) {
           Navigator.pushNamedAndRemoveUntil(
             context,
-            Routes.chatScreen,
+            AppRoutes.chat,
             (route) => false,
           );
 

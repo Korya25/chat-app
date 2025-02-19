@@ -1,4 +1,4 @@
-import 'package:chat_app/core/router/routes.dart';
+import 'package:chat_app/core/router/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -65,10 +65,10 @@ class AccountSection extends StatelessWidget {
   }
 
   void _navigateToProfile(BuildContext context) {
-    Navigator.of(context).pushNamed(Routes.profileScreen);
+    Navigator.of(context).pushNamed(AppRoutes.profile);
   }
 
   void _navigateToAccountSettings(BuildContext context) {
-    Navigator.of(context).pushNamed(Routes.accountScreen);
+    Navigator.of(context).pushNamed(AppRoutes.account);
   }
 }
