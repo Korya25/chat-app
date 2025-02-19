@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class CustomTextFormField extends StatelessWidget {
   final String? labelText;
   final String? hintText;
+  final TextStyle? hintStyle;
   final TextInputType keyboardType;
   final bool obscureText;
   final TextEditingController? controller;
@@ -38,6 +39,7 @@ class CustomTextFormField extends StatelessWidget {
     this.borderRadius,
     this.focusNode,
     this.onFieldSubmitted,
+    this.hintStyle,
   });
 
   @override
@@ -55,6 +57,7 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
+
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         filled: true,
@@ -76,10 +79,11 @@ class CustomTextFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius ?? 24.r),
           borderSide: BorderSide(color: focusedBorderColor),
         ),
-        hintStyle: TextStyle(
-          color: Colors.grey[600],
-          fontSize: 14.sp,
-        ),
+        hintStyle: hintStyle ??
+            TextStyle(
+              color: Colors.grey[600],
+              fontSize: 14.sp,
+            ),
       ),
     );
   }

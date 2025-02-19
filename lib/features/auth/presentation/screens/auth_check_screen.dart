@@ -8,7 +8,6 @@ class AuthCheckScreen extends StatefulWidget {
   const AuthCheckScreen({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _AuthCheckScreenState createState() => _AuthCheckScreenState();
 }
 
@@ -16,31 +15,23 @@ class _AuthCheckScreenState extends State<AuthCheckScreen> {
   @override
   void initState() {
     super.initState();
-    _navigateToNextScreen();
-  }
-
-  void _navigateToNextScreen() {
-    final authCubit = context.read<AuthCubit>();
-    authCubit.checkUserStatus();
-
-    Future.delayed(const Duration(seconds: 2), () {
-      // ignore: use_build_context_synchronously
-      final state = context.read<AuthCubit>().state;
-      if (state is AuthSuccess) {
-        // ignore: use_build_context_synchronously
-        Navigator.pushReplacementNamed(context, Routes.chatScreen);
-      } else {
-        // ignore: use_build_context_synchronously
-        Navigator.pushReplacementNamed(context, Routes.onboardingScreen);
-      }
-    });
+    context.read<AuthCubit>().checkUserStatus();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: CircularProgressIndicator(),
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthSuccess) {
+          Navigator.pushReplacementNamed(context, Routes.chatScreen);
+        } else if (state is AuthLoggedOut) {
+          Navigator.pushReplacementNamed(context, Routes.onboardingScreen);
+        }
+      },
+      child: const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
       ),
     );
   }

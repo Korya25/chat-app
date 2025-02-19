@@ -1,7 +1,9 @@
 import 'package:chat_app/core/router/app_router.dart';
 import 'package:chat_app/core/router/routes.dart';
+import 'package:chat_app/features/account/cubit/account_cubit.dart';
+import 'package:chat_app/features/account/data/account_repositry.dart';
 import 'package:chat_app/features/auth/cubit/auth_cubit.dart';
-import 'package:chat_app/features/auth/data/auth_repository.dart';
+import 'package:chat_app/features/auth/data/services/auth_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,6 +30,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AuthCubit(AuthRepository())),
+        BlocProvider(create: (context) => AccountCubit(AccountRepository())),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
