@@ -1,5 +1,5 @@
 import 'package:chat_app/core/widget/custom_button.dart';
-import 'package:chat_app/core/widget/custom_text_form_feild.dart';
+import 'package:chat_app/core/widget/custom_text_form_field.dart';
 import 'package:chat_app/features/account/cubit/account_cubit.dart';
 import 'package:chat_app/features/account/cubit/account_state.dart';
 import 'package:flutter/material.dart';

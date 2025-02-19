@@ -1,5 +1,5 @@
 import 'package:chat_app/core/utils/validators.dart';
-import 'package:chat_app/core/widget/custom_text_form_feild.dart';
+import 'package:chat_app/core/widget/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class PasswordField extends StatelessWidget {

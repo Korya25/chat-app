@@ -1,4 +1,4 @@
-import 'package:chat_app/core/widget/custom_text_form_feild.dart';
+import 'package:chat_app/core/widget/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:chat_app/core/widget/custom_button.dart';

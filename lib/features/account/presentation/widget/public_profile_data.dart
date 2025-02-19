@@ -1,5 +1,5 @@
 import 'package:chat_app/core/constant/app_colors.dart';
-import 'package:chat_app/core/widget/custom_text_form_feild.dart';
+import 'package:chat_app/core/widget/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

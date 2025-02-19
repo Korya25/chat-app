@@ -3,7 +3,7 @@ import 'package:chat_app/core/router/app_routes.dart';
 import 'package:chat_app/core/utils/validators.dart';
 import 'package:chat_app/core/widget/custom_button.dart';
 import 'package:chat_app/core/widget/custom_text_button.dart';
-import 'package:chat_app/core/widget/custom_text_form_feild.dart';
+import 'package:chat_app/core/widget/custom_text_form_field.dart';
 import 'package:chat_app/features/account/cubit/account_cubit.dart';
 import 'package:chat_app/features/account/cubit/account_state.dart';
 import 'package:chat_app/features/auth/cubit/auth_cubit.dart';

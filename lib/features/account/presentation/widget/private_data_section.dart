@@ -66,7 +66,7 @@ class _PrivateDataSectionState extends State<PrivateDataSection> {
         return Container(
           padding: EdgeInsets.all(16.w),
           decoration: BoxDecoration(
-            color: AppColors.primaryColor.withOpacity(0.9),
+            color: AppColors.primaryColor.withAlpha((0.9).toInt()),
             borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
           ),
           child: Column(
@@ -131,7 +131,7 @@ class _PrivateDataSectionState extends State<PrivateDataSection> {
         return Container(
           padding: EdgeInsets.all(16.w),
           decoration: BoxDecoration(
-            color: AppColors.primaryColor.withOpacity(0.9),
+            color: AppColors.primaryColor.withAlpha((0.9).toInt()),
             borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
           ),
           child: Column(

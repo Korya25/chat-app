@@ -38,7 +38,7 @@ class CustomTextButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       // ignore: deprecated_member_use
-      splashColor: splashColor ?? Colors.grey.withOpacity(0.2),
+      splashColor: splashColor ?? Colors.grey.withAlpha((0.2 * 255).toInt()),
       highlightColor: highlightColor ?? Colors.transparent,
       borderRadius: BorderRadius.circular(8.0.r),
       child: Container(

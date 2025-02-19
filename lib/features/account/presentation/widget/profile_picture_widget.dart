@@ -47,7 +47,7 @@ class _ProfilePictureWidgetState extends State<ProfilePictureWidget> {
   void _showChangePictureOptions() {
     showModalBottomSheet(
       context: context,
-      backgroundColor: AppColors.primaryColor.withOpacity(0.8),
+      backgroundColor: AppColors.primaryColor.withAlpha((0.8 * 255).toInt()),
       builder: (_) => Padding(
         padding: EdgeInsets.all(18.w),
         child: Column(
