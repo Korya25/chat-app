@@ -1,12 +1,11 @@
-import 'package:chat_app/features/account/data/accouont_hive_services.dart';
-import 'package:chat_app/features/auth/data/services/hive_service.dart';
+import 'package:chat_app/core/services/hive_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AccountRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
+  final HiveService _hiveService = HiveService();
   // ✅ Delete user account from Firebase, Firestore, and Hive
   Future<void> deleteUserAccount(String password) async {
     User? user = _auth.currentUser;
@@ -28,11 +27,11 @@ class AccountRepository {
         await user.delete();
 
         // 🔹 Delete user data from Hive
-        await AccountHiveService.deleteUser(user.email!);
+        await _hiveService.deleteUser(user.email!);
 
         // 🔹 Sign out user and clear Hive data
         await _auth.signOut();
-        await HiveService.clearUserData();
+        await _hiveService.clearUserData();
       } on FirebaseAuthException catch (e) {
         if (e.code == 'wrong-password') {
           throw Exception("Incorrect password. Please try again.");
@@ -73,7 +72,7 @@ class AccountRepository {
       await user.updatePassword(newPassword);
 
       // 🔹 Update password in Hive
-      AccountHiveService.updatePassword(user.email!, newPassword);
+      _hiveService.updatePassword(user.email!, newPassword);
 
       print("✅ Password updated successfully.");
     } on FirebaseAuthException catch (e) {
@@ -120,7 +119,7 @@ class AccountRepository {
       await updateUserEmailInFirestore(user.uid, newEmail);
 
       // 🔹 Update email in Hive
-      await AccountHiveService().updateEmailInHive(newEmail);
+      await _hiveService.updateEmailInHive(newEmail);
 
       print("✅ Email updated successfully.");
       return true;
@@ -188,7 +187,7 @@ class AccountRepository {
       });
 
       // Update Hive
-      await AccountHiveService().updateUsernameInHive(newUsername);
+      await _hiveService.updateUsernameInHive(newUsername);
     } catch (e) {
       throw Exception("Username update failed: ${e.toString()}");
     }

@@ -1,18 +1,18 @@
+import 'package:chat_app/core/services/hive_services.dart';
 import 'package:chat_app/features/auth/data/models/user_model.dart';
-import 'package:chat_app/features/auth/data/services/hive_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final HiveService _hiveService = HiveService();
 
-  // Get current user
-  User? getCurrentUser() {
-    return _firebaseAuth.currentUser;
-  }
+  User? getCurrentUser() => _firebaseAuth.currentUser;
 
-  // Sign In
+  /// ✅ Signs in a user with email and password
+  /// - Fetches user data from Firestore if login is successful
+  /// - Saves the user data in Hive for local access
   Future<UserModel?> signIn(String email, String password) async {
     try {
       UserCredential credential =
@@ -20,22 +20,10 @@ class AuthRepository {
         email: email,
         password: password,
       );
+
       if (credential.user != null) {
-        // Retrieve user data from Firestore
-        DocumentSnapshot userDoc = await _firestore
-            .collection('users')
-            .doc(credential.user!.uid)
-            .get();
-        if (userDoc.exists) {
-          UserModel user =
-              UserModel.fromFirestore(userDoc.data() as Map<String, dynamic>);
-          // Save user data to Hive
-          await HiveService.saveUserData(user.toHiveMap());
-
-          return user;
-        }
+        return await _fetchAndCacheUserData(credential.user!.uid);
       }
-
       return null;
     } on FirebaseAuthException catch (e) {
       throw FirebaseAuthException(code: e.code, message: e.message);
@@ -44,18 +32,9 @@ class AuthRepository {
     }
   }
 
-  Future<void> sendVerificationEmail() async {
-    final user = FirebaseAuth.instance.currentUser;
-
-    if (user != null && !user.emailVerified) {
-      await user.sendEmailVerification();
-      print('✅ Verification email sent!');
-    } else {
-      print('⚠️ User is null or already verified.');
-    }
-  }
-
-  // Sign Up
+  /// ✅ Registers a new user with email, password, and username
+  /// - Saves user data to Firestore and Hive
+  /// - Sends an email verification link
   Future<UserModel?> signUp({
     required String email,
     required String password,
@@ -75,13 +54,13 @@ class AuthRepository {
           userName: userName,
           createdAt: DateTime.now(),
         );
-        sendVerificationEmail();
-        await _addUserToFirestore(user: user);
-        await HiveService.saveUserData(user.toHiveMap());
+
+        await sendVerificationEmail();
+        await _addUserToFirestore(user);
+        await _hiveService.saveUserData(user.toHiveMap());
 
         return user;
       }
-
       return null;
     } on FirebaseAuthException catch (e) {
       throw FirebaseAuthException(code: e.code, message: e.message);
@@ -90,30 +69,27 @@ class AuthRepository {
     }
   }
 
-  // Sign Out
+  /// ✅ Logs out the current user
+  /// - Signs the user out from Firebase
+  /// - Clears user data from Hive
   Future<void> signOut() async {
     try {
       await _firebaseAuth.signOut();
-      await HiveService.clearUserData();
+      await _hiveService.clearUserData();
     } catch (e) {
       throw Exception("Failed to log out: ${e.toString()}");
     }
   }
 
-  // Reset Password
+  /// ✅ Sends a password reset email if the email exists in Firebase Auth
   Future<void> resetPassword(String email) async {
     try {
       final signInMethods =
-          // ignore: deprecated_member_use
           await _firebaseAuth.fetchSignInMethodsForEmail(email);
-
       if (signInMethods.isEmpty) {
         throw FirebaseAuthException(
-          code: "user-not-found",
-          message: "Email is not registered",
-        );
+            code: "user-not-found", message: "Email is not registered");
       }
-
       await _firebaseAuth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       throw Exception("Firebase error: ${e.message}");
@@ -122,13 +98,19 @@ class AuthRepository {
     }
   }
 
-  // Check if user is already logged in
-  Future<bool> isUserLoggedIn() {
-    return HiveService.isUserLoggedIn();
+  /// ✅ Checks if the user is already logged in (by checking Hive storage)
+  Future<bool> isUserLoggedIn() => _hiveService.isUserLoggedIn();
+
+  /// ✅ Sends an email verification link to the logged-in user
+  Future<void> sendVerificationEmail() async {
+    final user = _firebaseAuth.currentUser;
+    if (user != null && !user.emailVerified) {
+      await user.sendEmailVerification();
+    }
   }
 
-  // Add user to Firestore
-  Future<void> _addUserToFirestore({required UserModel user}) async {
+  /// ✅ Saves the user data in Firestore
+  Future<void> _addUserToFirestore(UserModel user) async {
     try {
       await _firestore.collection('users').doc(user.userId).set(user.toMap());
     } catch (e) {
@@ -136,8 +118,24 @@ class AuthRepository {
     }
   }
 
-  // Get user from Hive
-  Future<UserModel?> getUserFromHive() async {
-    return await HiveService.getUserData();
+  /// ✅ Retrieves user data from Hive storage
+  Future<UserModel?> getUserFromHive() async =>
+      await _hiveService.getUserData();
+
+  /// ✅ Fetches user data from Firestore and saves it in Hive for local access
+  Future<UserModel?> _fetchAndCacheUserData(String userId) async {
+    try {
+      DocumentSnapshot userDoc =
+          await _firestore.collection('users').doc(userId).get();
+      if (userDoc.exists) {
+        UserModel user =
+            UserModel.fromFirestore(userDoc.data() as Map<String, dynamic>);
+        await _hiveService.saveUserData(user.toHiveMap());
+        return user;
+      }
+      return null;
+    } catch (e) {
+      throw Exception("Failed to fetch user data: ${e.toString()}");
+    }
   }
 }

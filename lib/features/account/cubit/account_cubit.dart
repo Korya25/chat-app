@@ -17,7 +17,7 @@ class AccountCubit extends Cubit<AccountState> {
     emit(AccountLoading());
     try {
       await _accountRepository.deleteUserAccount(password);
-      emit(AccountSuccess("تم حذف الحساب بنجاح."));
+      emit(AccountSuccess("Account deleted successfully."));
     } catch (e) {
       emit(AccountError(e.toString()));
     }
@@ -48,12 +48,12 @@ class AccountCubit extends Cubit<AccountState> {
         bool isUpdated =
             await _accountRepository.confirmAndUpdateEmail(newEmail);
         if (isUpdated) {
-          emit(AccountSuccess("تم تحديث البريد الإلكتروني بنجاح!"));
+          emit(AccountSuccess("Email updated successfully."));
         } else {
-          emit(AccountError("لم يتم تأكيد البريد الإلكتروني بعد."));
+          emit(AccountError("Failed to update email."));
         }
       } else {
-        emit(AccountError("فشل إرسال طلب التحقق."));
+        emit(AccountError("Email verification failed."));
       }
     } catch (e) {
       emit(AccountError(e.toString()));
